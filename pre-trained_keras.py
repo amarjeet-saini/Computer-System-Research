@@ -1,3 +1,9 @@
+#############################################################################
+# pre-trained_keras.py - download pre-trained model for image-classification
+#
+
+
+
 from tensorflow.keras.applications.resnet50 import ResNet50
 # from tensorflow.keras.applications.vgg16 import VGG16
 # from tensorflow.keras.applications.inception_v3 import InceptionV3
