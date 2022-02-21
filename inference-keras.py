@@ -90,10 +90,11 @@ for i in range(0,len(images)):
     cuda.memcpy_htod_async(d_input, input_batch, stream)
     
     tic = time.time() 
+    
     # Execute model
     context.execute_async_v2(bindings, stream.handle, None)
-    toc = time.time()
     
+    toc = time.time()
     inf_time.append(toc-tic)
 
     # Transfer predictions back
