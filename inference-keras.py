@@ -1,5 +1,7 @@
 ############################################################################################################
 # Program to calculate accuracy and inference time of 5000 images for Keras pre-trained model
+# Input: .trt engine, labels.txt, images dir
+# Output: .txt file
 # Flow : keras -> onnx -> .trt engine
 # Author: Amarjeet Saini
 # Original source : https://github.com/NVIDIA/TensorRT/blob/main/quickstart/IntroNotebooks/3.%20Using%20Tensorflow%202%20through%20ONNX.ipynb
