@@ -1,3 +1,9 @@
+############################################################################################################
+# Program to calculate accuracy and inference time of 5000 images for Keras pre-trained model
+# Flow : keras -> onnx -> .trt engine
+# Author: Amarjeet Saini
+# Original source : https://github.com/NVIDIA/TensorRT/blob/main/quickstart/IntroNotebooks/3.%20Using%20Tensorflow%202%20through%20ONNX.ipynb
+
 import os
 import numpy as np
 import sys
@@ -104,7 +110,7 @@ for i in range(0,len(images)):
 
 bar.finish()
 end = time.time()
-print("classification took {:.5} seconds".format(end - start))
+print("inferernce took {:.5} seconds".format(end - start))
 
 # inference time
 total = 0
@@ -112,7 +118,7 @@ total = 0
 for x in inf_time:
     total += x 
 
-print(f"w/o memcopy and image load {total}")
+print(f"inferernce took w/o memcopy and image load {total}")
 
 # write result to file
 
