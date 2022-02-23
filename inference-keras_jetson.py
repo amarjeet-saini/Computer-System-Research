@@ -75,27 +75,25 @@ stream = cuda.Stream()
 inf_time = []
 
 print("-------- start inference -----------")
-start = time.time()
 bar = progressbar.ProgressBar(maxval=len(images), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+start = time.time()
 bar.start()
 
 for i in range(0,len(images)):
-    
+    # Pre-process input image
     img_path = "data_clean/"+names[i] 
     img = image.load_img(img_path, target_size=(224, 224))
     x = image.img_to_array(img)
     x = np.expand_dims(x, axis=0)
     x = preprocess_input(x)
     input_batch = np.array(np.repeat(np.expand_dims(np.array(x, dtype=np.float32), axis=0), BATCH_SIZE, axis=0), dtype=np.float32)
-    input_batch = input_batch.astype(target_dtype)
-
+    
+    # Transfer input data to device
     cuda.memcpy_htod_async(d_input, input_batch, stream)
     
     tic = time.time() 
-    
     # Execute model
     context.execute_async_v2(bindings, stream.handle, None)
-    
     toc = time.time()
     inf_time.append(toc-tic)
 
@@ -111,9 +109,9 @@ for i in range(0,len(images)):
 
     bar.update(i+1)
 
-bar.finish()
 end = time.time()
-print("inferernce took {:.5} seconds".format(end - start))
+bar.finish()
+print("total runtime {:.5} seconds".format(end - start))
 
 # inference time
 total = 0
@@ -121,7 +119,7 @@ total = 0
 for x in inf_time:
     total += x 
 
-print(f"inferernce took w/o memcopy and image load {total}")
+print(f"total runtime w/o memcopy and image load {total}")
 
 # write result to file
 
