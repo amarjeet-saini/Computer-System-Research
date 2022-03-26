@@ -1,5 +1,3 @@
-# https://developer.nvidia.com/blog/announcing-onnx-runtime-for-jetson/
-
 import onnx
 import numpy as np
 import onnxruntime as ort
