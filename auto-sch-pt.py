@@ -1,3 +1,5 @@
+# auto-scheduler code pytorch framework
+ 
 import os # adding this line
 os.environ["PATH"] = os.environ["PATH"]+":/usr/local/cuda/bin/"
 import tvm
